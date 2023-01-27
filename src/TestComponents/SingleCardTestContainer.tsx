@@ -2,11 +2,13 @@ import React from "react";
 import { getCardData } from "../Utils/apiCalls";
 import SingleDisplayCard, { DisplayCardTypes } from "./SingleCardTest";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import AddNewCard from "./AddNewCardTest";
 
 export const SingleCardTestContainer = () => {
     const [dataList, setDataList] = React.useState<Array<any>>([]);
-    const [loader, toggleLoader] = React.useState(false)
+    const [loader, toggleLoader] = React.useState(false);
+    const [currentActiveTab, toggleCurrentActiveTab] = React.useState(DisplayCardTypes.FORECAST_CARD)
     const [hoverCard, toggleHoverCard] = React.useState(-1)
 
     React.useEffect(() => {
@@ -15,6 +17,26 @@ export const SingleCardTestContainer = () => {
 
     return (
         <Grid container spacing={2} style={{padding: "50px"}}>
+            <Grid item xs={12} style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center"
+            }}>
+                <Button 
+                    variant={"contained"} 
+                    onClick={() => toggleCurrentActiveTab(DisplayCardTypes.FORECAST_CARD)}
+                    disabled={currentActiveTab === DisplayCardTypes.FORECAST_CARD}
+                >
+                    Show Forecasts
+                </Button>
+                <Button 
+                    onClick={() => toggleCurrentActiveTab(DisplayCardTypes.PROJECT_CARD)} 
+                    variant={"contained"}
+                    disabled={currentActiveTab === DisplayCardTypes.PROJECT_CARD}
+                >
+                    Show Projects
+                </Button>
+            </Grid>
             {
                 loader ?
                     <h3>Loading....</h3>
@@ -27,13 +49,13 @@ export const SingleCardTestContainer = () => {
                             onMouseLeave={() => toggleHoverCard(-1)}
                         >
                             <AddNewCard
-                                title={"Creating new Card"}
+                                title={"Create new Card"}
                                 isActive={hoverCard === -1 ? true : false}
                                 action={(x: boolean) => console.log(x)}
                             />
                         </Grid>
                         {
-                            dataList.map((item, idx) => (
+                            dataList.filter(x => x.type === currentActiveTab ).map((item, idx) => (
                                 <Grid 
                                     xs={2} 
                                     item

@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 		width: 226,
 		height: 160,
 		cursor: "pointer",
-		backgroundColor: themeColorProvider("mainColorLight", 0.05),
+		backgroundColor: themeColorProvider("mainColorDark"),
 		borderRadius: "10px !important",
 		transition: "0.25s ease-in-out",
 		boxShadow: "none",
@@ -22,6 +22,8 @@ const useStyles = makeStyles({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
+		padding: "10px 10px 18px 15px",
+
 	},
 	pos: {
 		fontFamily: "Roboto",
@@ -109,12 +111,18 @@ const useStyles = makeStyles({
 export default function AddNewCard(props: Props) {
 	const classes = useStyles();
 
+    const handleAction = () => {
+        if (props?.action) {
+            props.action(true)
+            return null
+        }
+        console.log("No action defined")
+    }
+
 	return (
 		<Card
 			data-test="AddNewCard"
-			onClick={() =>
-				props.action ? props.action(true) : console.log("No action defined")
-			}
+			onClick={handleAction}
 			className={`${classes.root} ${
 				props.isActive ? classes.hoveredActiveCard : ""
 			} addNewCard`}

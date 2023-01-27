@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import { timeDifference } from "../Utils/utils";
 import logo from './logo.svg';
 
@@ -164,17 +163,6 @@ const SingleDisplayCard = (props: SingleDisplayCardProps) => {
 				<Typography className={classes.pos} color="textSecondary">
 					{props.data?.description || "..."}
 				</Typography>
-				{props.type.toUpperCase() === "PURCHASECARD" && (
-					<Button
-						className={classes.reportButton}
-						variant="outlined"
-						size="small"
-						onClick={e => handleReportGenClick(e, props.data.id)}
-						disabled={!props.data.completed}
-					>
-						Download Report
-					</Button>
-				)}
 			</CardContent>
 			<CardActions
 				style={{
