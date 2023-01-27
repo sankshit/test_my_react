@@ -65,6 +65,7 @@ export default class VendorAdvanceContractAdd extends Component {
   render() {
     return (
       <div>
+        <button onClick={() => this.props?.history.push("/")}>Go back</button>
         <div style={{ color: "black" }}>
           <div
             style={{

@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import AddNewCard from "./AddNewCardTest";
 
-export const SingleCardTestContainer = () => {
+export const SingleCardTestContainer = (props: any) => {
     const [dataList, setDataList] = React.useState<Array<any>>([]);
     const [loader, toggleLoader] = React.useState(false);
     const [currentActiveTab, toggleCurrentActiveTab] = React.useState(DisplayCardTypes.FORECAST_CARD)
@@ -17,6 +17,7 @@ export const SingleCardTestContainer = () => {
 
     return (
         <Grid container spacing={2} style={{padding: "50px"}}>
+            <button onClick={() => props?.history.push("/")}>Go back</button>
             <Grid item xs={12} style={{
                 display: "flex",
                 justifyContent: "space-around",
