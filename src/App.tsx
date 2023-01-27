@@ -5,14 +5,23 @@ import {
 	Route,
 	Switch,
 } from "react-router-dom";
-
+import { createBrowserHistory } from "history";
 import { SingleCardTestContainer } from './TestComponents/SingleCardTestContainer';
+import { TestLander } from './Components/TestLander';
+import VendorAdvanceContractAdd from './TestComponents/FormTest';
+
+
+export const history = createBrowserHistory();
+
+
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
         <Switch>
-          <Route path="/singleCardTest" component={SingleCardTestContainer} />
+          <Route exact path="/" component={TestLander} />
+          <Route exact path="/singleCardTest" component={SingleCardTestContainer} />
+          <Route exact path="/virtualListTest" component={VendorAdvanceContractAdd} />
         </Switch>
       </Router>
   );

@@ -102,3 +102,12 @@
 		opacity: 0;
 	}
 }
+
+
+.test-list-item {
+  cursor: pointer;
+}
+
+.test-list-item:hover {
+  color: blue;
+}
