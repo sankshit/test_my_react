@@ -36,3 +36,69 @@
     transform: rotate(360deg);
   }
 }
+
+.hover-active-card {
+	position: relative;
+	animation: glowingHover 1.5s infinite;
+}
+@keyframes glowingHover {
+	from {
+		box-shadow: 0px 0px 15px -5px #5682e6, 0px 0px 15px -5px #5682e6 inset,
+			0px 0px 15px -5px #e19cc1, 0px 0px 15px -5px #e19cc1 inset;
+	}
+	to {
+		box-shadow: 0px 0px 15px -5px #e19cc1, 0px 0px 15px -5px #e19cc1 inset,
+			0px 0px 15px -5px #5682e6, 0px 0px 15px -5px #5682e6 inset;
+	}
+}
+
+.hover-active-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 10px;
+	padding: 3px;
+	background: linear-gradient(to bottom, #5682e6, #e19cc1) !important;
+	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: destination-out;
+	mask-composite: exclude;
+	animation: borderEffect 0.75s,
+		borderGradShift 1.5s ease-in-out 0s infinite alternate;
+}
+.hover-active-card::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 10px;
+	padding: 3px;
+	background: linear-gradient(to top, #5682e6, #e19cc1) !important;
+	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: destination-out;
+	mask-composite: exclude;
+	animation: borderEffect 0.75s,
+		borderGradShift 1.5s ease-in-out -1.5s infinite alternate;
+}
+@keyframes borderEffect {
+	from {
+		padding: 0px;
+	}
+	to {
+		padding: 3px;
+	}
+}
+@keyframes borderGradShift {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
